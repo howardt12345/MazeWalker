@@ -1,0 +1,5 @@
+3
+4
+AutoTest autosolve 10 61
+wHintsTest wHints 10 310
+player other 2 21
