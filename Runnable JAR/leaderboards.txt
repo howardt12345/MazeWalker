@@ -1,0 +1,4 @@
+2
+4
+AutoTest1 autosolve 10 55
+wHintsTest wHints 10 310
