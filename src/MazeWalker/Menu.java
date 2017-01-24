@@ -135,15 +135,20 @@ public class Menu extends JPanel{
 	}
 	public static void MainMenu(String[] args) //main menu
 	{
-		JTextField playerName = new JTextField("player"); //textfield for player name
+		JTextField playerName = new JTextField(); //textfield for player name
 		playerName.setBounds(GameController.width/2 - GameController.width/16, (int)Math.rint(GameController.width/35*8.75), 
 				(int)Math.rint(GameController.width/5.25), (int) Math.rint(GameController.width/35)); 
 		playerName.addFocusListener(new FocusListener(){
-			public void focusGained(FocusEvent arg0) {
-				playerName.setText("");
-			}
 			public void focusLost(FocusEvent e) {
-				playerName.setText("player");
+				if (playerName.getText().isEmpty()) {
+					playerName.setText("player");
+				}
+			}
+			public void focusGained(FocusEvent arg0) {
+				if (playerName.getText().isEmpty() || playerName.getText().equals("player")) {
+					playerName.setText("");
+				}
+				
 			}
 		});
 		JCheckBox autoSolveCheckBox = new JCheckBox ("Auto Solve"); //checkbox for autosolve
