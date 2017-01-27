@@ -1,7 +1,11 @@
 package MazeWalker;
+import java.awt.AWTException;
 import java.awt.Dimension;
+import java.awt.Robot;
 import java.awt.Toolkit;
 import java.io.FileNotFoundException;
+
+import com.sun.glass.events.KeyEvent;
 
 import javafx.application.*;
 import javafx.scene.*;
@@ -14,7 +18,7 @@ import javafx.stage.Stage;
 
 public class GameController extends Application{
 	
-	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //Dimension
+	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //Screen dimensions
 	//primitives
     public static boolean alreadyLaunched = false, reloaded = false;
 	public static double camX = 0, camY = -2, camZ = -25; //Camera location
@@ -118,11 +122,15 @@ public class GameController extends Application{
         	if (e.getCode() == KeyCode.RIGHT || e.getCode() == KeyCode.D ){ //if right pressed
         		Movement.MoveRight(); //move right
         	}
-        	if (e.getCode() == KeyCode.Q) {
-        		Movement.camY++;
-        	}
-        	if (e.getCode() == KeyCode.E) {
-        		Movement.camY--;
+        	if (AutoSolve.autoSolve) {
+        		if (e.getCode() == KeyCode.SPACE) {
+        			try {
+						Robot r = new Robot();
+						r.keyPress(KeyEvent.VK_SPACE);
+					} catch (AWTException e1) {
+						e1.printStackTrace();
+					}
+        		}
         	}
 			if (e.getCode() == KeyCode.BACK_SPACE){ //if backspace
 				Menu.game = Menu.GameState.Stats; //go to stats menu
